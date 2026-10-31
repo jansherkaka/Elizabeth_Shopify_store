@@ -6,14 +6,14 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
         {% for product in collection.products %}
-          {% render 'product-card' | product_product: product %}
+          {% render 'product-card', product_product: product %}
         {% else %}
           <p>there is no collection</p>
         {% endfor %}
       </div>
     </div>
     <div>
-      {% render 'pagination' | pagination: paginate %}
+      {% render 'pagination', pagination: paginate %}
     </div>
   {% endpaginate %}
 </div>
@@ -30,4 +30,16 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-card' | product_product: product %}"
+  to: "{% render 'product-card', product_product: product %}"
+  position: 325..378
+- from: "{% render 'pagination' | pagination: paginate %}"
+  to: "{% render 'pagination', pagination: paginate %}"
+  position: 499..546
+{%- endcomment -%}
